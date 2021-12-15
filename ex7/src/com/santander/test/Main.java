@@ -1,41 +1,56 @@
 package com.santander.test;
 
-import java.util.Arrays;
+import com.santander.test.entidades.Pessoa;
+
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Scanner entrada = new Scanner(System.in);
+        Scanner scanPessoa = new Scanner(System.in);
+        Pessoa[] pessoas = new Pessoa [5];
 
-        int qtdPessoas = 5;
-        String[][] pessoas = new String[qtdPessoas][2];
-        int idade = 0;
-        int linha = 0;
-        int coluna = 0;
-        String[] maisNovo = new String[];
-        String[] maisVelho = new String[];
-        int soma = 0;
 
-        for (linha = 0; linha < qtdPessoas; linha++){
 
-            System.out.println("Escreva o nome da pessoa:");
-            pessoas[linha][0] = entrada.next();
+        for (int i = 0; i < pessoas.length; i++) {
+            pessoas[i] = new Pessoa();
 
-            System.out.println("Escreva a idade da pessoa:");
-            idade = entrada.nextInt();
-            pessoas[linha][1] = String.valueOf(idade);
+            System.out.print("Digite o nome: ");
+            pessoas[i].setNome(scanPessoa.next());
 
-            soma += idade;
-
-            if (idade > maisVelho) {
-
-            }
-
+            System.out.print("Digite a idade: ");
+            pessoas[i].setIdade(scanPessoa.nextInt());
         }
 
-        System.out.println("\n" + Arrays.deepToString(pessoas));
+        System.out.println("\nDADOS RECEBIDOS:");
+
+        for (int i = 0; i < pessoas.length; i++) {
+            System.out.println("Nome: " + pessoas[i].getNome() + ", " + pessoas[i].getIdade() + " anos.");
+        }
+
+        int maiorIdade = pessoas[0].getIdade();
+        int menorIdade = pessoas[0].getIdade();
+
+        int somaIdade = 0;
+
+
+        for (int i = 0; i < pessoas.length; i++) {
+            if (pessoas[i].getIdade() < menorIdade){
+                menorIdade = pessoas[i].getIdade();
+            } else if (pessoas[i].getIdade() > maiorIdade){
+                maiorIdade = pessoas[i].getIdade();
+            }
+            somaIdade += pessoas[i].getIdade();
+        }
+        float mediaIdade = (somaIdade / pessoas.length);
+
+        System.out.println("----------------------------");
+
+        System.out.println("Maior idade: " + maiorIdade + " anos.");
+        System.out.println("Menor idade: " + menorIdade + " anos.");
+        System.out.println("Média de idade: " + mediaIdade + " anos.");
+
     }
 
 }
