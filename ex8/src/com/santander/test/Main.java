@@ -10,16 +10,11 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanPessoa = new Scanner(System.in);
-
         Pessoa[] pessoas = new Pessoa[5];
-
-        double imc = 0.0;
 
         final double MIN_IMC = 18.5;
         final double MAX_IMC = 25.0;
 
-        double abaixoIMC = 0.0;
-        double acimaIMC = 0.0;
 
         for (int i = 0; i < pessoas.length; i++) {
             pessoas[i] = new Pessoa();
@@ -33,9 +28,7 @@ public class Main {
             System.out.print("Digite o peso: ");
             pessoas[i].setPeso(Double.parseDouble(scanPessoa.next()));
 
-            imc = pessoas[i].getPeso() / Math.pow(pessoas[i].getAltura(), 2);
-
-            pessoas[i].setImc(imc);
+            pessoas[i].setImc(pessoas[i].getPeso() / Math.pow(pessoas[i].getAltura(), 2));
 
         }
         System.out.println("\n Dados: \n -----------------------");
